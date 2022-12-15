@@ -10,7 +10,7 @@ def createTable():
     query = """CREATE TABLE tasks
     (TaskID INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL,
     Title TEXT NOT NULL,
-    Details TEXT DEFAULT "There are no details for this task." NOT NULL,
+    Details TEXT NOT NULL,
     Dateadded TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,
     Removed BOOLEAN NOT NULL DEFAULT FALSE)"""
     print(query)
@@ -23,9 +23,9 @@ createTable()
 def addTask():
     # this function adds a task to the database.
 
-    # prompting user for information.
+    # prompts user for input.
     Title = str(input("Please enter a title: "))
-    Details = str(input("Please enter details for the task: "))
+    Details = str(input("Please enter details for the task: ")) or "There are no details for this task."
 
     # query is formed based on the values given by the user.
     query = """INSERT INTO tasks (Title, Details) VALUES (?, ?)
@@ -34,10 +34,10 @@ def addTask():
     # attempts to add the task information to the database.
     try: 
         cursor.execute(query, (Title, Details))
-    # throws an error if adding the task to the database was unsuccessful for any reason.
-    except Exception as e:
+
+    # throws an error if adding the task to the database was unsuccessful for any reason. 
+    except:
         print("There was an error adding the task. Please try again.")
-        print(e)
 
     # saves the changes to the databse and prints a success message.
     else: 
