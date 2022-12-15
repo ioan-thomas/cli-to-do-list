@@ -5,19 +5,23 @@ db = './tasks.db'
 conn = sqlite3.connect(db)
 cursor = conn.cursor()
 
-def createTable():
+def createTable(table_name):
     # this function creates a table in the database if it doesn't already exist
-    query = """CREATE TABLE tasks
+
+    # the SQL query to be run 
+    query = f"""CREATE TABLE ?
     (TaskID INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL,
     Title TEXT NOT NULL,
     Details TEXT NOT NULL,
     Dateadded TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,
     Removed BOOLEAN NOT NULL DEFAULT FALSE)"""
-    print(query)
-    cursor.execute(query)
-    conn.commit()
 
-createTable()
+    # attempts to create the table using the above query but shows a message if one already exists
+    try: 
+        cursor.execute(query, (table_name,))
+        conn.commit()
+    except sqlite3.OperationalError:
+        print("Database table already exists.")
 
 
 def addTask():
@@ -25,7 +29,9 @@ def addTask():
 
     # prompts user for input.
     Title = str(input("Please enter a title: "))
-    Details = str(input("Please enter details for the task: ")) or "There are no details for this task."
+
+    # if the user does not enter an input, a default message is added to the variable
+    Details = str(input("Please enter details for the task or click Enter to skip: ")) or "There are no details for this task."
 
     # query is formed based on the values given by the user.
     query = """INSERT INTO tasks (Title, Details) VALUES (?, ?)
@@ -43,7 +49,6 @@ def addTask():
     else: 
         conn.commit()
         print(f"The task '{Title}' was added successfully.")
-
 
 
 def main():
@@ -91,5 +96,8 @@ def main():
 
 
 if __name__ == "__main__":
+
+    createTable('tasks')
+
     # runs the 'main function' i.e. the main menu
     main()
