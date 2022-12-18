@@ -5,11 +5,11 @@ db = './tasks.db'
 conn = sqlite3.connect(db)
 cursor = conn.cursor()
 
-def createTable(table_name):
+def createTable():
     # this function creates a table in the database if it doesn't already exist
 
     # the SQL query to be run 
-    query = f"""CREATE TABLE ?
+    query = """CREATE TABLE tasks
     (TaskID INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL,
     Title TEXT NOT NULL,
     Details TEXT NOT NULL,
@@ -18,10 +18,11 @@ def createTable(table_name):
 
     # attempts to create the table using the above query but shows a message if one already exists
     try: 
-        cursor.execute(query, (table_name,))
+        cursor.execute(query)
         conn.commit()
     except sqlite3.OperationalError:
         print("Database table already exists.")
+
 
 
 def addTask():
@@ -94,10 +95,11 @@ def main():
             print("8")
             return
 
+ # sort by date
 
 if __name__ == "__main__":
 
-    createTable('tasks')
+    createTable()
 
     # runs the 'main function' i.e. the main menu
     main()
