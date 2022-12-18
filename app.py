@@ -24,7 +24,6 @@ def createTable():
         print("Database table already exists.")
 
 
-
 def addTask():
     # this function adds a task to the database.
 
@@ -52,6 +51,22 @@ def addTask():
         print(f"The task '{Title}' was added successfully.")
 
 
+def viewTasks():
+    # this function retrieves all tasks from the database that have not been removed
+
+    # querying the database for the relevant information
+    query = """SELECT TaskID, Title, Details, Dateadded FROM tasks WHERE Removed = 0"""
+    cursor.execute(query)
+
+    # fetching all of the results from the database
+    results = cursor.fetchall()
+
+    # printing results to the terminal 
+    print("Here are all the tasks:\n")
+    for task in results:
+        print(f"""{task[0]}: {task[1]}""")
+
+
 def main():
     # presents the user with options, asks user for input and runs the relevant function associated with that output.
 
@@ -74,7 +89,7 @@ def main():
             addTask()
             return
         if user_choice == "2":
-            print("2")
+            viewTasks()
             return
         if user_choice == "3":
             print("3")
