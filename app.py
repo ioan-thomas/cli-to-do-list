@@ -20,7 +20,7 @@ def createTable():
     try: 
         cursor.execute(query)
         conn.commit()
-    except Exception:
+    except:
         print("Database table already exists.")
 
 
