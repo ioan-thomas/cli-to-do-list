@@ -20,7 +20,7 @@ def createTable():
     try: 
         cursor.execute(query)
         conn.commit()
-    except sqlite3.OperationalError:
+    except Exception:
         print("Database table already exists.")
 
 
