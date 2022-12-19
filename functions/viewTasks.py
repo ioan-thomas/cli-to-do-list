@@ -1,3 +1,5 @@
+from functions.viewAllDetails import viewAllDetails
+
 def viewTasks(conn, cursor):
     # this function retrieves all tasks from the database that have not been removed
 
