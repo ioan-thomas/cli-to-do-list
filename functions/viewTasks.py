@@ -10,6 +10,8 @@ def viewTasks(conn, cursor):
     # fetching all of the results from the database
     results = cursor.fetchall()
 
+    # WHAT IF THERE'S NOT ANY???
+
     # printing results to the terminal 
     print("Here are all the tasks:\n")
     for task in results:
