@@ -16,7 +16,7 @@ def removeTask(conn, cursor):
 
         # if the user input results in anything other than an integer (a taskID), then the user will be shown the list of tasks
         except ValueError:
-            viewTasks(conn, cursor)
+            viewTasks(conn, cursor) # imported from functions/viewTasks.py
         
         # if user exits app, they are greeted with the goodbye message
         except KeyboardInterrupt:
@@ -27,7 +27,7 @@ def removeTask(conn, cursor):
         except:
             print('There was an error removing that task. Please check the taskID and try again.')
 
-
+        # commits the changes to the tasks database and presents the user with the message.
         else:
             conn.commit()
             print(f"If there is task with the ID {taskID}, it has been removed")
