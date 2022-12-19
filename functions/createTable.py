@@ -1,12 +1,5 @@
-from connectToDatabase import connectToDatabase
-
-def createTable():
+def createTable(conn, cursor):
     # this function creates a table in the database if it doesn't already exist
-
-    # retrieving the connection and cursor object to interact with the database.
-    db = connectToDatabase('./tasks.db')
-    conn = db[0]
-    cursor = db[1]
 
     # the SQL query to be run 
     query = """CREATE TABLE tasks
@@ -20,9 +13,6 @@ def createTable():
     try: 
         cursor.execute(query)
         conn.commit()
-    except Exception as e:
-        # print("Database table already exists.")
-        print(e)
+    except:
+        print("Database table already exists.")
 
-
-createTable()
