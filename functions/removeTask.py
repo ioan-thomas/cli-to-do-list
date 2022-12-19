@@ -6,21 +6,18 @@ def removeTask(conn, cursor):
     while True:
         try:
             # asks user for ID, or 
-            taskID = input("Enter the ID of the task that you wish to remove or type TASKS to list all tasks: ")
+            taskID = int(input("Enter the ID of the task that you wish to remove or type TASKS to list all tasks: "))
             query = """UPDATE tasks SET Removed = TRUE WHERE TaskID = ?"""
+            
+            cursor.execute(query, (taskID,))
 
-            if type(taskID) != "<class 'str'>":
-                cursor.execute(query, (int(taskID),))
-
+        except ValueError:
+            viewTasks(conn, cursor)
         except:
             print('There was an error removing that task. Please check the taskID and try again.')
 
         else:
-            
-            if type(taskID) == "<class 'str'>":
-                viewTasks(conn, cursor)
-            else:
-                conn.commit()
-                print(f"The task with the ID {taskID} has been removed")
-                return
+            conn.commit()
+            print(f"If there is task with the ID {taskID}, it has been removed")
+            return
 
