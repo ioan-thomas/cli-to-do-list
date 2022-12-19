@@ -4,7 +4,7 @@ def createTable():
     # this function creates a table in the database if it doesn't already exist
 
     # retrieving the connection and cursor object to interact with the database.
-    db = connectToDatabase('../tasks.db')
+    db = connectToDatabase('./tasks.db')
     conn = db[0]
     cursor = db[1]
 
@@ -20,8 +20,9 @@ def createTable():
     try: 
         cursor.execute(query)
         conn.commit()
-    except:
-        print("Database table already exists.")
+    except Exception as e:
+        # print("Database table already exists.")
+        print(e)
 
 
 createTable()
