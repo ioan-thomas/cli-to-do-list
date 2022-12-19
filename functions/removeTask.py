@@ -1,16 +1,26 @@
+from functions.viewTasks import viewTasks
+
 def removeTask(conn, cursor):
-    # this function removes the specified task from the database, but does not removed it.
+    # this function removes the specified task from the to-do-list, but does not remove it from the database.
 
     while True:
         try:
-            taskID = int(input("Enter the ID of the task that you wish to remove: "))
+            # asks user for ID, or 
+            taskID = input("Enter the ID of the task that you wish to remove or type TASKS to list all tasks: ")
             query = """UPDATE tasks SET Removed = TRUE WHERE TaskID = ?"""
-            cursor.execute(query, (taskID,))
-            
+
+            if type(taskID) != "<class 'str'>":
+                cursor.execute(query, (int(taskID),))
+
         except:
             print('There was an error removing that task. Please check the taskID and try again.')
+
         else:
-            conn.commit()
-            print(f"The task with the ID {taskID} has been removed")
-            return
+            
+            if type(taskID) == "<class 'str'>":
+                viewTasks(conn, cursor)
+            else:
+                conn.commit()
+                print(f"The task with the ID {taskID} has been removed")
+                return
 
