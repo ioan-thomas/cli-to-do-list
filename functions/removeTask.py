@@ -4,12 +4,13 @@ from functions.exitApp import exitApp
 def removeTask(conn, cursor):
     # this function removes the specified task from the to-do-list, but does not remove it from the database.
 
+
     while True:
         try:
             # asks user for ID, if user enters "TASKS" (or anything else other than an ID) a valueError will be thrown (see below).
             taskID = int(input("Enter the ID of the task that you wish to remove or type TASKS to list all tasks: "))
 
-            # the SQL query to be ran
+            # the SQL query to be ran. The Removed value associated with the given taskID (in the tasks table) is set to True.
             query = """UPDATE tasks SET Removed = TRUE WHERE TaskID = ?"""
             
             #executing the SQL query above with the task as the parameter (in place of the "?").
@@ -31,5 +32,9 @@ def removeTask(conn, cursor):
         else:
             conn.commit()
             print(f"If there is task with the ID {taskID}, it has been removed")
-            return
+            
+            # asks the user if they want to remove another task. If they do, they are returned to the main menu
+            userChoice = str(input("Would you like to remove another task? (Y/N): "))
+            if userChoice == 'N':
+                return
 
