@@ -1,4 +1,5 @@
 from functions.viewTasks import viewTasks
+from functions.exitApp import exitApp
 
 def removeTask(conn, cursor):
     # this function removes the specified task from the to-do-list, but does not remove it from the database.
@@ -18,10 +19,9 @@ def removeTask(conn, cursor):
         except ValueError:
             viewTasks(conn, cursor) # imported from functions/viewTasks.py
         
-        # if user exits app, they are greeted with the goodbye message
+        # if user exits app, they are greeted with the goodbye message throught the exitApp function
         except KeyboardInterrupt:
-            print("\n\nGoodbye")
-            return
+            exitApp() # imported from functions/exitApp.py
 
         # if an error occurs, the user will be presented with the below error text.
         except:
