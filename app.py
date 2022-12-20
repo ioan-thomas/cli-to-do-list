@@ -18,10 +18,13 @@ def main():
             print("6. Update a task")
             print("7. Exit")
             
-            # promts user for decision
-            user_choice = input("Please enter your choice: ")
+            try:
+                # promts user for decision
+                user_choice = int(input("Please enter your choice: "))
+            except: 
+                print('Please enter a number between 1-7')
 
-            # runs the relevant function associated with the user's output and then breaks out of the loop.
+            # runs the relevant function associated with the user's output before beginning the loop again until the user either uses the exitApp function or they use the KeyboardInterrupt error to exit the app.
             if user_choice == "1":
                 # runs the function and destructures the db tuple into the connect and cursor objects.
                 addTask(*db) # imported from functions/addTask.py
@@ -41,7 +44,7 @@ def main():
                 updateTask(*db) # imported from functions/updateTask.py
             if user_choice == "7":
                 # runs the below function to exit the app.
-                exitApp()
+                exitApp() # imported from functions/exitApp.py
         # if there is a KeyboardInterrupt error, the exitApp function is ran to exit the application.
         except KeyboardInterrupt:
             exitApp()
