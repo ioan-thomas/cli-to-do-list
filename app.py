@@ -1,10 +1,12 @@
 from functions import *
 
+# creates a tuple with the connect and cursor objects as values - returned from the function. The tuple values reference the tasks.db passed in as a parameter.
 db =connectToDatabase('./tasks.db')
 
 def main():
-    # presents the user with options, asks user for input and runs the relevant function associated with that output.
+    # this function presents the user with options, asks user for input and runs the relevant function associated with that output.
 
+    # the loop will continue until option 7 is given or the user attempts to exit via the KeyboardInterrupt error.
     while True:
         try:
             print("\nPlease select from the following options:")
@@ -21,20 +23,26 @@ def main():
 
             # runs the relevant function associated with the user's output and then breaks out of the loop.
             if user_choice == "1":
+                # runs the function and destructures the db tuple into the connect and cursor objects.
                 addTask(*db) # imported from functions/addTask.py
             if user_choice == "2":
+                # runs the function and destructures the db tuple into the connect and cursor objects. The True parameter presents the user with additional functionality in the viewTasks function.
                 viewTasks(*db, True) # imported from functions/viewTasks.py
             if user_choice == "3":
-                removeTask(*db) # imported from functions/viewRemovedTasks.py
+                # runs the function and destructures the db tuple into the connect and cursor objects.
+                removeTask(*db) # imported from functions/removeTask.py
             if user_choice == "4":
-                viewRemovedTasks(*db)
+                # runs the function and destructures the db tuple into the connect and cursor objects.
+                viewRemovedTasks(*db) # imported from functions/viewRemovedTasks.py
             if user_choice == "5":
                 print("5")
             if user_choice == "6":
-                updateTask(*db)
+                # runs the function and destructures the db tuple into the connect and cursor objects.
+                updateTask(*db) # imported from functions/updateTask.py
             if user_choice == "7":
+                # runs the below function to exit the app.
                 exitApp()
-
+        # if there is a KeyboardInterrupt error, the exitApp function is ran to exit the application.
         except KeyboardInterrupt:
             exitApp()
 
@@ -42,7 +50,8 @@ def main():
 
 if __name__ == "__main__":
 
+    # runs the function and destructures the db tuple into the connect and cursor objects.
     createTable(*db) # imported from functions/createTable.py
 
-    # runs the 'main function' i.e. the main menu
+    # runs the 'main function' i.e. the main menu.
     main()
