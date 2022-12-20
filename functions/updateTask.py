@@ -1,4 +1,5 @@
 from functions.viewTasks import viewTasks
+from functions.exitApp import exitApp
 
 def updateTask(conn, cursor):
 
@@ -16,8 +17,7 @@ def updateTask(conn, cursor):
             cursor.execute(query, (taskTitle, taskDetails, taskID))
         
         except KeyboardInterrupt:
-                print("\n\nGoodbye")
-                exit()
+                exitApp()
         except:
             print("Invalid input. Please check the task ID and try again.")
         else:
