@@ -38,7 +38,8 @@ def main():
                 # runs the function and destructures the db tuple into the connect and cursor objects.
                 viewRemovedTasks(*db) # imported from functions/viewRemovedTasks.py
             if user_choice == "5":
-                print("5")
+                # runs the function function to delete a specified task and destructures the db tuple into the connect and cursor object.
+                deleteTask(*db)
             if user_choice == "6":
                 # runs the function and destructures the db tuple into the connect and cursor objects.
                 updateTask(*db) # imported from functions/updateTask.py
