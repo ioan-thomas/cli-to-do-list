@@ -12,5 +12,3 @@ def connectToDatabase(databasePath):
     # returning a tuple containing the above objects to be used in other functions without needing to repeat code.
     return (conn, cursor)
 
-
-# can you make two of the same name?
