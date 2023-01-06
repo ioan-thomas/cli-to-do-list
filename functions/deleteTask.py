@@ -1,6 +1,6 @@
 from functions import viewTasks
 
-def deleteTasks(conn, cursor):
+def deleteTask(conn, cursor):
     # this function permanently deletes tasks from the tasks database
 
     while True:
