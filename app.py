@@ -50,6 +50,8 @@ def main():
         except KeyboardInterrupt:
             exitApp()
 
+            # the exception catch all clause needs to be placed after keyboard interrupt
+
  # sort by date
 
 if __name__ == "__main__":
