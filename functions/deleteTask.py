@@ -25,8 +25,7 @@ def deleteTask(conn, cursor):
             print(f"The task with the ID of {taskID} has been deleted.")
 
             # prompts the user for an input.
-            userInput = str(input("Would you like to delete another task? (Y/N): "))
-
+            userInput = str(input("Would you like to delete another task? (Y/N): ")).upper()
             # if the user selects they would not like to delete another task, they are returned to the main menu. Otherwise, the loop continues and they are shown a list of tasks again to delete.
             if userInput == 'N':
                 return
