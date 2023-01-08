@@ -18,8 +18,10 @@ def removeTask(conn, cursor):
 
         # if the user input results in anything other than an integer (a taskID), then the user will be shown the list of tasks
         except ValueError:
-            viewTasks(conn, cursor) # imported from functions/viewTasks.py
-        
+            # imported from functions/viewTasks.py
+            viewingTasks = viewTasks(conn, cursor, False)
+            if viewingTasks == -1:
+                return
         # if user exits app, they are greeted with the goodbye message throught the exitApp function
         except KeyboardInterrupt:
             exitApp() # imported from functions/exitApp.py
@@ -31,10 +33,10 @@ def removeTask(conn, cursor):
         # commits the changes to the tasks database and presents the user with the message.
         else:
             conn.commit()
-            print(f"If there is task with the ID {taskID}, it has been removed")
+            print(f"If there is task with the ID of {taskID}, it has been removed.")
             
             # asks the user if they want to remove another task. If they do, they are returned to the main menu
-            userChoice = str(input("Would you like to remove another task? (Y/N): "))
+            userChoice = str(input("Would you like to remove another task? (Y/N): ")).upper()
             if userChoice == 'N':
                 return
 
