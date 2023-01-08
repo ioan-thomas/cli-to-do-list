@@ -1,10 +1,10 @@
-from functions import viewTasks
+from functions.viewTasks import viewTasks
 
 def deleteTask(conn, cursor):
     # this function permanently deletes tasks from the tasks database
 
     while True:
-    # the user is shown all of the tasks available
+        # the user is shown all of the tasks available
         viewTasks(conn, cursor, False)
 
         #the user is promted to enter the ID of the task they would like to delete
