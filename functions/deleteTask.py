@@ -5,8 +5,10 @@ def deleteTask(conn, cursor):
 
     while True:
         # the user is shown all of the tasks available
-        viewTasks(conn, cursor, False)
-
+        viewingTasks = viewTasks(conn, cursor, False)
+        if viewingTasks == -1:
+            return
+            
         #the user is promted to enter the ID of the task they would like to delete
         taskID = str(input("Enter the ID of the task you wish to permanently delete: "))
 
