@@ -13,7 +13,7 @@ def viewTasks(conn, cursor, viewDetails):
     # if the list is empty, the below message is shown in the console and the user is returned to main function that called this viewTasks function.
     if results == []:
         print("\n There aren't any tasks yet.")
-        return
+        return -1
 
     # printing results to the terminal 
     print("Here are all the tasks:\n")
