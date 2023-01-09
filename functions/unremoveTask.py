@@ -1,5 +1,4 @@
 from functions.exitApp import exitApp
-from functions.viewTasks import viewTasks
 
 def unremoveTask(conn, cursor):
     # this function set the Removed value in the Tasks table to False. "Unremoving" the task.
@@ -33,7 +32,7 @@ def unremoveTask(conn, cursor):
             print("That task has been unremoved. Please return to the main menu and select option 2 to view all tasks.\n ")
 
             # prompts user for decision if they would like to remove another task or return to main menu
-            userChoice = str(input("Would you like to remove another task? (Y/N): ")).upper()
+            userChoice = str(input("Would you like to unremove another task? (Y/N): ")).upper()
 
             # returns user to main menu
             if userChoice == 'N':
