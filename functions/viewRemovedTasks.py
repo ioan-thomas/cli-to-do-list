@@ -1,3 +1,5 @@
+from functions.viewAllDetails import viewAllDetails
+
 def viewRemovedTasks(conn, cursor):
     # this function allows the user to view all tasks from the database that have been marked as removed.
 
@@ -18,7 +20,4 @@ def viewRemovedTasks(conn, cursor):
     
     # loops through the array of results returned from the database and prints them to the console.
     else: 
-        for task in results:
-            for item in task:
-                print(item, end=" ")
-            print("\n")
+        viewAllDetails(results)
