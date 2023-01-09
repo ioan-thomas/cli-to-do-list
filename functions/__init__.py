@@ -10,3 +10,4 @@ from .updateTask import updateTask
 from .viewAllDetails import viewAllDetails
 from .viewRemovedTasks import viewRemovedTasks
 from .viewTasks import viewTasks
+from .unremoveTask import unremoveTask
