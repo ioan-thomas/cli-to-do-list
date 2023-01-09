@@ -1,3 +1,5 @@
+from functions.exitApp import exitApp
+
 def viewAllDetails(tasks): 
     # this function loops through the list given as an argument (tasks) and outputs the values to the console.
     try:
@@ -7,6 +9,11 @@ def viewAllDetails(tasks):
             Details: {task[2]}\n
             Time created: {task[3]}\n
             """)
+    
+      #exits the app on keyboard interrupt
+    except KeyboardInterrupt:
+        exitApp()
+
     # catches any errors that occur during the process e.g. the array is somehow empty.
     except:
         print("An error occurred. Please try again.\n")

@@ -1,23 +1,30 @@
 from functions.viewTasks import viewTasks
+from functions.exitApp import exitApp
 
 def deleteTask(conn, cursor):
     # this function permanently deletes tasks from the tasks database
 
     while True:
-        # the user is shown all of the tasks available
-        viewingTasks = viewTasks(conn, cursor, False)
-        if viewingTasks == -1:
-            return
-            
-        #the user is promted to enter the ID of the task they would like to delete
-        taskID = str(input("Enter the ID of the task you wish to permanently delete: "))
-
-        # the SQL query to be ran. It deleted the task with the given taskID from the tasks database.
-        query = """DELETE FROM tasks WHERE taskID = ?"""
-
-        # attempts to execute the query with the given taskID using parameterisation.
         try: 
+            # the user is shown all of the tasks available
+            viewingTasks = viewTasks(conn, cursor, False)
+            if viewingTasks == -1:
+                return
+                
+            #the user is promted to enter the ID of the task they would like to delete
+            taskID = str(input("Enter the ID of the task you wish to permanently delete: "))
+
+            # the SQL query to be ran. It deleted the task with the given taskID from the tasks database.
+            query = """DELETE FROM tasks WHERE taskID = ?"""
+
+            # attempts to execute the query with the given taskID using parameterisation.
+ 
             cursor.execute(query, (taskID,))
+        
+         #exits the app on keyboard interrupt
+        except KeyboardInterrupt:
+            exitApp()
+
         except:
             # displays the message if an error has occurred.
             print("There was an error deleting that task. Please try again.")
