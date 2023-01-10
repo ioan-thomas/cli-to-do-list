@@ -8,19 +8,23 @@ def viewSpecificTask(conn, cursor):
     while True:
         try: 
             # ask user for the ID of the task to fetch
-            taskID = int(input("What is the ID of the task you'd like to view?: "))
+            taskID = str(input("What is the ID of the task you'd like to view?: "))
 
             # executes the query
-            cursor.execute(query, taskID)
+            cursor.execute(query, [taskID,])
 
             # fetching the results from the database
             results = cursor.fetchone()
-            print(results)
 
             # if there are no tasks in the database relating to that taskID
             if results == []:
-                print("There are currently nso tasks available. Please add a task and try again.\n")
+                print("There are currently no tasks available. Please add a task and try again.\n")
                 return
+            
+            # if the user enters an invalid ID, they are returned to start and asked for an ID again.
+            # try:
+            if results == None:
+                print("There are no current tasks that meet that criteria.")
 
         # if user attempts to exit the app, the below exitApp function is ran
         except KeyboardInterrupt:
@@ -32,8 +36,23 @@ def viewSpecificTask(conn, cursor):
 
         # catches any other unexpeted errors
         except:
-            print("Something went wrong. Please try again later.\n")
+            print("Something went wrong. Please contact the developer and try again later.\n")
             return
+
         else:
-            
-            return
+                try: 
+                    while True:
+                        # asks user if they would like to see another task, if yes, loop continues, if not, they are returned to the menu.
+                        userChoice = str(input("Would you like to view another task? (Y/N): ")).upper()
+
+                        # loop only breaks if user choice is either yes or no.
+                        if userChoice == 'Y':
+                            # inner loop breaks, outer loop continues - user is asked for a task ID once again.
+                            break
+
+                        if userChoice == 'N':
+                            # a stop iteration error is raised, which is caught allowing outer loop to be broken
+                            raise StopIteration
+                # catches stop iteration errors, breaking out of the loop
+                except StopIteration:
+                    break
