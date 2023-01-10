@@ -11,11 +11,12 @@ def main():
             print("\nPlease select from the following options:")
             print("1. Add a task")
             print("2. View all tasks")
-            print("3. Remove a task")  
-            print("4. View all removed tasks")
-            print("5. Permenantly delete a task")    
-            print("6. Update a task")
-            print("7. Exit")
+            print("3. View a specific task")
+            print("4. Remove a task")  
+            print("5. View all removed tasks")
+            print("6. Permenantly delete a task")    
+            print("7. Update a task")
+            print("8. Exit")
             
             try:
                 # promts user for decision
@@ -30,17 +31,20 @@ def main():
                     viewTasks(*db, True) # imported from functions/viewTasks.py
                 if user_choice == 3:
                     # runs the function and destructures the db tuple into the connect and cursor objects.
-                    removeTask(*db) # imported from functions/removeTask.py
+                    viewSpecificTask(*db) # imported from functions/viewSpecificTask
                 if user_choice == 4:
                     # runs the function and destructures the db tuple into the connect and cursor objects.
-                    viewRemovedTasks(*db) # imported from functions/viewRemovedTasks.py
+                    removeTask(*db) # imported from functions/removeTask.py
                 if user_choice == 5:
+                    # runs the function and destructures the db tuple into the connect and cursor objects.
+                    viewRemovedTasks(*db) # imported from functions/viewRemovedTasks.py
+                if user_choice == 6:
                     # runs the function function to delete a specified task and destructures the db tuple into the connect and cursor object.
                     deleteTask(*db)
-                if user_choice == 6:
+                if user_choice == 7:
                     # runs the function and destructures the db tuple into the connect and cursor objects.
                     updateTask(*db) # imported from functions/updateTask.py
-                if user_choice == 7:
+                if user_choice == 8:
                     # runs the below function to exit the app.
                     exitApp() # imported from functions/exitApp.py
                     
