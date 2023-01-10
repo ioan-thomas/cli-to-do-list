@@ -20,10 +20,10 @@ def viewTasks(conn, cursor, viewDetails):
         print("Here are all the tasks:\n")
         for task in results: 
             print(f"""\n{task[0]}: {task[1]}\n""")
-
+        
 
         # the viewDetails parameter allows for added functionality within this function. If the user should be given the option to view more details about the task then the below code is ran.
-        # the user is prompted whether or not they would like to view more details. If the user selects yes then the viewAllDetails function is ran displaying those details. If not, the user is returned to the main() function which is where this viewTasks function was called.
+        # the user is prompted whether or not they would like to view more details. If the user selects yes (or anything else other than no)then the viewAllDetails function is ran displaying those details. If not, the user is returned to the main() function which is where this viewTasks function was called.
         if viewDetails:
             while True:
                 user_choice = str(input("Would you like to view all task details? (Y/N): ")).upper()
