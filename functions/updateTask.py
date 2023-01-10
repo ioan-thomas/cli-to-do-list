@@ -26,6 +26,7 @@ def updateTask(conn, cursor):
         except:
             # catches any unexpected error and prints the below message.
             print("Invalid input. Please check the task ID and try again.")
+            return
         else:
             # commits the changes to the database and prints a message saying so.
             conn.commit()
