@@ -52,11 +52,14 @@ def main():
             except KeyboardInterrupt:
                 exitApp()
 
-            except: 
+            # catches any value error i.e. if someone attempts to enter a string instead of a number between 1 and 7
+            except ValueError:
                 print('Please enter a number between 1-7')
 
-            # the exception catch all clause needs to be placed after keyboard interrupt
-
+            # the below will catch any other unexpected errors in the application.
+            except Exception as e:
+                print("Something went wrong. Please try again or contact the developer for assistance.")
+                print(e)
  # sort by date
 
 if __name__ == "__main__":
