@@ -18,13 +18,15 @@ def viewSpecificTask(conn, cursor):
 
             # if there are no tasks in the database relating to that taskID
             if results == []:
-                print("There are currently no tasks available. Please add a task and try again.\n")
+                print("There are currently no tasks available. Plea se add a task and try again.\n")
                 return
             
             # if the user enters an invalid ID, they are returned to start and asked for an ID again.
             # try:
             if results == None:
                 print("There are no current tasks that meet that criteria.")
+            else:
+                viewAllDetails([results])
 
         # if user attempts to exit the app, the below exitApp function is ran
         except KeyboardInterrupt:
@@ -53,6 +55,7 @@ def viewSpecificTask(conn, cursor):
                         if userChoice == 'N':
                             # a stop iteration error is raised, which is caught allowing outer loop to be broken
                             raise StopIteration
+
                 # catches stop iteration errors, breaking out of the loop
                 except StopIteration:
                     break
