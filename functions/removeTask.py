@@ -19,7 +19,7 @@ def removeTask(conn, cursor):
         # if the user input results in anything other than an integer (a taskID), then the user will be shown the list of tasks
         except ValueError:
             # imported from functions/viewTasks.py
-            tasks = viewTasks(conn, cursor, False)
+            tasks = viewTasks(conn, cursor, False, False)
             if tasks == -1:
                 return
         # if user exits app, they are greeted with the goodbye message throught the exitApp function

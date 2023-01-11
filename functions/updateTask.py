@@ -6,7 +6,7 @@ def updateTask(conn, cursor):
     # this function allows the user to update an task information
     while True:
         # displays a list of tasks to the user
-        viewTasks(conn, cursor, False)
+        viewTasks(conn, cursor, False, False)
 
         try: 
             # prompts user for the task details

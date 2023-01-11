@@ -7,7 +7,7 @@ def deleteTask(conn, cursor):
     while True:
         try: 
             # the user is shown all of the tasks available
-            viewingTasks = viewTasks(conn, cursor, False)
+            viewingTasks = viewTasks(conn, cursor, False, False)
             if viewingTasks == -1:
                 return
                 
@@ -27,7 +27,8 @@ def deleteTask(conn, cursor):
 
         except:
             # displays the message if an error has occurred.
-            print("There was an error deleting that task. Please try again.")
+            print("An error occurred. Please try again.")
+            return
         else: 
             # saves the changes to the database and displays the message.
             conn.commit()
