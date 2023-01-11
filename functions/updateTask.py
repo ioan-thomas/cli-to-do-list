@@ -6,8 +6,11 @@ def updateTask(conn, cursor):
     # this function allows the user to update an task information
     while True:
         # displays a list of tasks to the user
-        viewTasks(conn, cursor, False, False)
+        viewingTasks = viewTasks(conn, cursor, False, False)
 
+        # if there are no tasks available, the user will be returned to the main menu
+        if viewingTasks == -1: 
+            return
         try: 
             # prompts user for the task details
             taskID = int(input("Enter the task ID you wish to update: "))
