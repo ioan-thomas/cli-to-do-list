@@ -28,7 +28,7 @@ def main():
                     addTask(*db) # imported from functions/addTask.py
                 if user_choice == 2:
                     # runs the function and destructures the db tuple into the connect and cursor objects. The True parameter presents the user with additional functionality in the viewTasks function.
-                    viewTasks(*db, True) # imported from functions/viewTasks.py
+                    viewTasks(*db, True, True) # imported from functions/viewTasks.py
                 if user_choice == 3:
                     # runs the function and destructures the db tuple into the connect and cursor objects.
                     viewSpecificTask(*db) # imported from functions/viewSpecificTask
