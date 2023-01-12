@@ -60,7 +60,6 @@ def main():
             except Exception as e:
                 print("Something went wrong. Please try again or contact the developer for assistance.")
                 print(e)
- # sort by date
 
 if __name__ == "__main__":
 
