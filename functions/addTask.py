@@ -4,7 +4,6 @@ def addTask(conn, cursor):
     # this function adds a task to the database.
     try: 
 
-
         # prompts user for input. Capitalises the input creating for a better UX (increased readability) when viewing the tasks later.
         Title = str(input("Please enter a title: ")).capitalize()
 
