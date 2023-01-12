@@ -2,14 +2,12 @@ from functions.viewAllDetails import viewAllDetails
 from functions.exitApp import exitApp
 
 def viewTasks(conn, cursor, viewDetails, abilityToSort):
-    # this function retrieves all tasks from the database that have not been removed
+    # this function is used to view all tasks that have not been removed from the database and sort them by the user's decision.
 
     try: 
         sortby= "TaskID"
         orderby = "ASC"
         
-        # querying the database for the relevant information
-        query = """SELECT TaskID, Title, Details, Dateadded FROM tasks WHERE Removed = 0 ORDER BY ?, ?"""
 
         if abilityToSort == True:
             decisionToOrderBy = None
@@ -25,15 +23,19 @@ def viewTasks(conn, cursor, viewDetails, abilityToSort):
 
                 decisionToOrderBy = int(input("\nHow would you like to sort the the results?: "))
 
+            # ordering the results by the user's decision
             if decisionToOrderBy == 1 or decisionToOrderBy == 2:
                 sortby = 'Title'
             if decisionToOrderBy == 2 or decisionToOrderBy == 4 or decisionToOrderBy == 6:
-                orderby = 'DSC'
+                orderby = 'DESC'
             if decisionToOrderBy == 3 or decisionToOrderBy == 4:
                 sortby = 'Dateadded'
 
+        # assembling the query with the sortby and orderby parameters
+        query = """SELECT TaskID, Title, Details, Dateadded FROM tasks WHERE Removed = 0 ORDER BY {} {}""".format(sortby, orderby)
 
-        print(cursor.execute(query, (sortby, orderby)))
+        # executing the query with the sortby and orderby parameters
+        cursor.execute(query)
 
         # fetching all of the results from the database into a list.
         results = cursor.fetchall()
@@ -43,7 +45,7 @@ def viewTasks(conn, cursor, viewDetails, abilityToSort):
             print("\n There aren't any tasks yet.")
             return -1
 
-        # printing results to the terminal 
+        # printing all of the results to the console. 
         print("Here are all the tasks:\n")
         print(results)
         for task in results: 
@@ -66,10 +68,13 @@ def viewTasks(conn, cursor, viewDetails, abilityToSort):
                     break
     except ValueError:
         print("Please enter a valid number.")
-    
+
+    except TypeError:
+        print("Please enter a valid number.") 
+
     except KeyboardInterrupt:
         exitApp()
     
     except Exception as e:
-        # print("An error occurred. Please try again later.")
+        print("An error occurred. Please try again later.")
         print(e)
