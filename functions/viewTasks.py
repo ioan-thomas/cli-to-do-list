@@ -31,7 +31,7 @@ def viewTasks(conn, cursor, viewDetails, abilityToSort):
             if decisionToOrderBy == 3 or decisionToOrderBy == 4:
                 sortby = 'Dateadded'
 
-        # assembling the query with the sortby and orderby parameters
+        # assembling the query with the sortby and orderby parameters since the user is not directly entering information inside the query
         query = """SELECT TaskID, Title, Details, Dateadded FROM tasks WHERE Removed = 0 ORDER BY {} {}""".format(sortby, orderby)
 
         # executing the query with the sortby and orderby parameters
@@ -47,7 +47,6 @@ def viewTasks(conn, cursor, viewDetails, abilityToSort):
 
         # printing all of the results to the console. 
         print("Here are all the tasks:\n")
-        print(results)
         for task in results: 
             print(f"""\n{task[0]}: {task[1]}\n""")
         
