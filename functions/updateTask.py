@@ -14,8 +14,19 @@ def updateTask(conn, cursor):
         try: 
             # prompts user for the task details
             taskID = int(input("Enter the task ID you wish to update: "))
-            taskTitle = str(input("Enter the title of the task: "))
+            taskTitle = str(input("Enter the title of the task: ")).capitalize()
+            
+            # checks if the title is less than 100 characters
+            if len(taskTitle) > 100:
+                print("The title must be less than 100 characters.")
+                continue
+
             taskDetails = str(input("Enter the details for the task: "))
+
+            # checks if the details are less than 250 characters
+            if len(taskDetails) > 250:
+                print("The details must be less than 250 characters.")
+                continue
 
             # the SQL query to be ran
             query = """UPDATE tasks SET Title = ?, Details = ? WHERE TaskID = ?"""
