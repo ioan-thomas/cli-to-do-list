@@ -21,7 +21,7 @@ def updateTask(conn, cursor):
                 print("The title must be less than 100 characters.")
                 continue
 
-            taskDetails = str(input("Enter the details for the task: "))
+            taskDetails = str(input("Please enter details for the task or click Enter to skip: ")) or "There are no details for this task."
 
             # checks if the details are less than 250 characters
             if len(taskDetails) > 250:
