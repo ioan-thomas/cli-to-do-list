@@ -4,8 +4,8 @@ def createTable(conn, cursor):
     # creating a variable containing the SQL query to be run. The NOT NULL ensures no values in the database are a value of null as this ensures all values are correct - allowing for a smooth application by producing errors to handle and display to the user.
     query = """CREATE TABLE tasks 
     (TaskID INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL,
-    Title(100) TEXT NOT NULL,
-    Details(250) TEXT NOT NULL,
+    Title TEXT NOT NULL,
+    Details TEXT NOT NULL,
     Dateadded TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,
     Removed BOOLEAN NOT NULL DEFAULT FALSE)"""
 
