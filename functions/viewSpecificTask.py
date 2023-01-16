@@ -8,10 +8,10 @@ def viewSpecificTask(conn, cursor):
     while True:
         try: 
             # ask user for the ID of the task to fetch
-            taskID = str(input("What is the ID of the task you'd like to view?: "))
+            task_ID = str(input("What is the ID of the task you'd like to view?: "))
 
             # executes the query
-            cursor.execute(query, [taskID,])
+            cursor.execute(query, [task_ID,])
 
             # fetching the results from the database
             results = cursor.fetchone()
@@ -45,14 +45,14 @@ def viewSpecificTask(conn, cursor):
                 try: 
                     while True:
                         # asks user if they would like to see another task, if yes, loop continues, if not, they are returned to the menu.
-                        userChoice = str(input("Would you like to view another task? (Y/N): ")).upper()
+                        user_choice = str(input("Would you like to view another task? (Y/N): ")).upper()
 
                         # loop only breaks if user choice is either yes or no.
-                        if userChoice == 'Y':
+                        if user_choice == 'Y':
                             # inner loop breaks, outer loop continues - user is asked for a task ID once again.
                             break
 
-                        if userChoice == 'N':
+                        if user_choice == 'N':
                             # a stop iteration error is raised, which is caught allowing outer loop to be broken
                             raise StopIteration
 

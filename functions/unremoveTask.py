@@ -6,13 +6,13 @@ def unremoveTask(conn, cursor):
         try:
 
             # prompts user for the task ID that they wish to unremove.
-            taskID = int(input("Please enter the taskID you wish to unremove: "))
+            task_ID = int(input("Please enter the taskID you wish to unremove: "))
             
             # the SQL query to be ran. The Removed value associated with the given taskID (in the tasks table) is set to True.  
             query = """UPDATE tasks SET Removed = 0 WHERE TaskID = ?"""
 
             #executing the SQL query above with the task as the parameter (in place of the "?").
-            cursor.execute(query, (taskID,))
+            cursor.execute(query, (task_ID,))
 
         # if a user does not enter an integer above, the below ValueError will display the message.
         except ValueError:
@@ -32,8 +32,8 @@ def unremoveTask(conn, cursor):
             print("That task has been unremoved. Please return to the main menu and select option 2 to view all tasks.\n ")
 
             # prompts user for decision if they would like to remove another task or return to main menu
-            userChoice = str(input("Would you like to unremove another task? (Y/N): ")).upper()
+            user_choice = str(input("Would you like to unremove another task? (Y/N): ")).upper()
 
             # returns user to main menu
-            if userChoice == 'N':
+            if user_choice == 'N':
                 return

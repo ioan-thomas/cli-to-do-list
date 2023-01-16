@@ -6,17 +6,17 @@ def addTask(conn, cursor):
         try: 
 
             # prompts user for input. Capitalises the input creating for a better UX (increased readability) when viewing the tasks later.
-            Title = str(input("Please enter a title: ")).capitalize()
+            title = str(input("Please enter a title: ")).capitalize()
 
             # checks if the title is less than 100 characters
-            if len(Title) > 100:
+            if len(title) > 100:
                 print("The title must be less than 100 characters.")
                 continue
 
             # if the user does not enter an input, a default message is added to the variable
-            Details = str(input("Please enter details for the task or click Enter to skip: ")) or "There are no details for this task."
+            details = str(input("Please enter details for the task or click Enter to skip: ")) or "There are no details for this task."
 
-            if len(Details) > 250:
+            if len(details) > 250:
                 print("The details must be less than 250 characters.")
                 continue
 
@@ -25,7 +25,7 @@ def addTask(conn, cursor):
             """
 
             # attempts to add the task information to the database.
-            cursor.execute(query, (Title, Details))
+            cursor.execute(query, (title, details))
         
         #exits the app on keyboard interrupt
         except KeyboardInterrupt:
@@ -38,5 +38,5 @@ def addTask(conn, cursor):
         # saves the changes to the databse and prints a success message.
         else: 
             conn.commit()
-            print(f"The task '{Title}' was added successfully.")
+            print(f"The task '{title}' was added successfully.")
             return

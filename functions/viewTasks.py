@@ -1,18 +1,18 @@
 from functions.viewAllDetails import viewAllDetails
 from functions.exitApp import exitApp
 
-def viewTasks(conn, cursor, viewDetails, abilityToSort):
+def viewTasks(conn, cursor, view_details, ability_to_sort):
     # this function is used to view all tasks that have not been removed from the database and sort them by the user's decision.
 
     try: 
-        sortby= "TaskID"
-        orderby = "ASC"
+        sort_by= "TaskID"
+        order_by = "ASC"
         
 
-        if abilityToSort == True:
-            decisionToOrderBy = None
+        if ability_to_sort == True:
+            decision_to_order_by = None
 
-            while decisionToOrderBy not in range(1, 7):
+            while decision_to_order_by not in range(1, 7):
                 print("\nPlease select from the following options: ")
                 print("1. Order by Title Alphabetically [Ascending]")
                 print("2. Order by Title Alphabetically [Descending]")
@@ -21,14 +21,14 @@ def viewTasks(conn, cursor, viewDetails, abilityToSort):
                 print("5. Order by Task ID [Ascending]")
                 print("6. Order by Task ID [Descending]")
 
-                decisionToOrderBy = int(input("\nHow would you like to sort the the results?: "))
+                decision_to_order_by = int(input("\nHow would you like to sort the the results?: "))
 
             # ordering the results by the user's decision
-            if decisionToOrderBy == 1 or decisionToOrderBy == 2:
+            if decision_to_order_by == 1 or decision_to_order_by == 2:
                 sortby = 'Title'
-            if decisionToOrderBy == 2 or decisionToOrderBy == 4 or decisionToOrderBy == 6:
+            if decision_to_order_by == 2 or decision_to_order_by == 4 or decision_to_order_by == 6:
                 orderby = 'DESC'
-            if decisionToOrderBy == 3 or decisionToOrderBy == 4:
+            if decision_to_order_by == 3 or decision_to_order_by == 4:
                 sortby = 'Dateadded'
 
         # assembling the query with the sortby and orderby parameters since the user is not directly entering information inside the query
@@ -51,9 +51,9 @@ def viewTasks(conn, cursor, viewDetails, abilityToSort):
             print(f"""\n{task[0]}: {task[1]}\n""")
         
 
-        # the viewDetails parameter allows for added functionality within this function. If the user should be given the option to view more details about the task then the below code is ran.
+        # the view_details parameter allows for added functionality within this function. If the user should be given the option to view more details about the task then the below code is ran.
         # the user is prompted whether or not they would like to view more details. If the user selects yes then the viewAllDetails function is ran displaying those details. If not, the user is returned to the main() function which is where this viewTasks function was called.
-        if viewDetails:
+        if view_details:
             while True:
                 try:
                     user_choice = str(input("Would you like to view all task details? (Y/N): ")).upper()

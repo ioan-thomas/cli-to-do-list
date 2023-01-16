@@ -8,13 +8,13 @@ def removeTask(conn, cursor):
     while True:
         try:
             # asks user for ID, if user enters "TASKS" (or anything else other than an ID) a valueError will be thrown (see below).
-            taskID = int(input("Enter the ID of the task that you wish to remove or type TASKS to list all tasks: "))
+            task_ID = int(input("Enter the ID of the task that you wish to remove or type TASKS to list all tasks: "))
 
             # the SQL query to be ran. The Removed value associated with the given taskID (in the tasks table) is set to True.
             query = """UPDATE tasks SET Removed = TRUE WHERE TaskID = ?"""
             
             #executing the SQL query above with the task as the parameter (in place of the "?").
-            cursor.execute(query, (taskID,))
+            cursor.execute(query, (task_ID,))
 
         # if the user input results in anything other than an integer (a taskID), then the user will be shown the list of tasks
         except ValueError:
@@ -33,11 +33,11 @@ def removeTask(conn, cursor):
         # commits the changes to the tasks database and presents the user with the message.
         else:
             conn.commit()
-            print(f"If there is task with the ID of {taskID}, it has been removed.")
+            print(f"If there is task with the ID of {task_ID}, it has been removed.")
             
             # asks the user if they want to remove another task. If they do, they are returned to the main menu
-            userChoice = str(input("Would you like to remove another task? (Y/N): ")).upper()
+            user_choice = str(input("Would you like to remove another task? (Y/N): ")).upper()
 
-            if userChoice == 'N':
+            if user_choice == 'N':
                 return
 
