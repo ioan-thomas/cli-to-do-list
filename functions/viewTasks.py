@@ -25,14 +25,14 @@ def viewTasks(conn, cursor, view_details, ability_to_sort):
 
             # ordering the results by the user's decision
             if decision_to_order_by == 1 or decision_to_order_by == 2:
-                sortby = 'Title'
+                sort_by = 'Title'
             if decision_to_order_by == 2 or decision_to_order_by == 4 or decision_to_order_by == 6:
-                orderby = 'DESC'
+                order_by = 'DESC'
             if decision_to_order_by == 3 or decision_to_order_by == 4:
-                sortby = 'Dateadded'
+                sort_by = 'Dateadded'
 
         # assembling the query with the sortby and orderby parameters since the user is not directly entering information inside the query
-        query = """SELECT TaskID, Title, Details, Dateadded FROM tasks WHERE Removed = 0 ORDER BY {} {}""".format(sortby, orderby)
+        query = """SELECT TaskID, Title, Details, Dateadded FROM tasks WHERE Removed = 0 ORDER BY {} {}""".format(sort_by, order_by)
 
         # executing the query with the sortby and orderby parameters
         cursor.execute(query)
